@@ -635,7 +635,13 @@ button { cursor: pointer; font-family: inherit; }
   display: flex;
   flex-direction: column;
 }
-.map-svg { width: 100%; flex: 1; min-height: 400px; display: block; }
+.map-svg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 400 / 720;
+  flex: 0 0 auto;
+  display: block;
+}
 
 /* Map stops */
 .map-stop-btn {
