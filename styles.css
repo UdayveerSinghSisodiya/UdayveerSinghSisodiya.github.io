@@ -80,6 +80,16 @@ button { cursor: pointer; font-family: inherit; }
   0%   { transform: scale(1);   opacity: 0.32; }
   100% { transform: scale(2.6); opacity: 0; }
 }
+/* Soft pulse for the gold "What's next?" mystery marker ring */
+@keyframes mystery-pulse {
+  0%,100% { transform: scale(1);    opacity: 0.85; }
+  50%      { transform: scale(1.18); opacity: 0.35; }
+}
+.mystery-pulse-ring {
+  animation: mystery-pulse 2.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
 .packet-pulse {
   animation: packetPulse 1.8s ease-out infinite;
   transform-box: fill-box;
@@ -617,23 +627,38 @@ button { cursor: pointer; font-family: inherit; }
   margin: 0 auto;
   padding: 0 24px;
   position: relative; z-index: 2;
+  align-items: stretch;
 }
 @media (min-width: 1024px) {
   .exp-grid { grid-template-columns: 2fr 3fr; }
 }
 
-/* Map column — fills grid area; blends into section background */
+/* Mobile / stacked layout: map sits on top at a fixed height,
+   cards stack full-width below. Never let JS stretch the map here. */
+@media (max-width: 767.98px) {
+  .map-col {
+    height: 400px !important;
+    min-height: 0 !important;
+  }
+  .map-wrap { justify-content: flex-start; }
+  .exp-cards-wrap { width: 100%; }
+}
+
+/* Map column — fills grid area; blends into section background.
+   JS sets an explicit pixel height here to match the cards panel on
+   desktop; the SVG keeps its aspect ratio and centers in any extra space. */
 .map-col {
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-/* Map container */
+/* Map container — centers the fixed-ratio map within the synced height */
 .map-wrap {
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 .map-svg {
   width: 100%;
@@ -650,7 +675,14 @@ button { cursor: pointer; font-family: inherit; }
   transform-origin: center;
 }
 .map-stop-btn:hover { transform: scale(1.15); }
-.map-stop-btn.active { filter: drop-shadow(0 0 8px rgba(0,0,0,0.4)); }
+/* Inactive stops sit slightly dimmed, no glow */
+.map-stop-btn { opacity: 0.82; transition: transform 0.22s ease, opacity 0.3s ease; }
+/* Active stop: full opacity + glowing teal ring (drop-shadow = SVG-safe box-shadow) */
+.map-stop-btn.active {
+  opacity: 1;
+  filter: drop-shadow(0 0 5px rgba(19,184,156,0.9))
+          drop-shadow(0 0 11px rgba(19,184,156,0.55));
+}
 
 .treasure-glow-ring {
   animation: treasure-pulse 2.1s ease-in-out infinite;
@@ -678,9 +710,19 @@ button { cursor: pointer; font-family: inherit; }
   border-radius: 13px;
   padding: 16px;
   cursor: pointer;
-  transition: all 0.28s ease;
+  /* default dimmed; opacity gets its own timing per spec */
+  opacity: 0.4;
+  transition: opacity 0.3s ease, background 0.28s ease,
+              box-shadow 0.28s ease, transform 0.28s ease,
+              outline 0.28s ease;
 }
+/* Latest/first card (current role) is full opacity by default */
+.exp-card.navi-card { opacity: 1; }
+/* Active card (clicked / current) is full opacity */
+.exp-card.active { opacity: 1; }
+/* Hovering a dimmed card lifts it to full for readability */
 .exp-card:hover {
+  opacity: 1;
   background: rgba(255,248,240,0.96);
   box-shadow: 0 5px 22px rgba(139,111,71,0.18);
   transform: translateY(-2px);

@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initXpBar();
   initChatButton();
   initExperienceMap();
+  initExpHeightSync();
   initPillNav();
   initTcpPacket();
 });
@@ -102,29 +103,67 @@ function initExperienceMap() {
     mystery:    null,
   };
 
-  // Activate a stop (highlight card + map stop)
+  // Activate a stop: glow its map node, set its card to full opacity
+  // (all others dimmed), and scroll the card into view.
+  // Opacity + glow are driven by CSS classes (.active / .navi-card),
+  // with transitions of 0.3s ease defined in styles.css.
   window.activateStop = function(stopId) {
     // Clear all active states
     document.querySelectorAll('.map-stop-btn').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.exp-card').forEach(el => el.style.outline = '');
+    document.querySelectorAll('.exp-card').forEach(el => el.classList.remove('active'));
 
-    // Activate clicked stop
+    // Glow the clicked map stop
     const stopEl = document.getElementById('stop' + capitalize(stopId));
     if (stopEl) stopEl.classList.add('active');
 
-    // Highlight corresponding card
+    // Activate corresponding card (CSS: active -> 100%, others -> 40%)
     const cardId = stopToCard[stopId];
     if (cardId) {
       const card = document.getElementById(cardId);
       if (card) {
-        card.style.outline = '2px solid rgba(139,111,71,0.5)';
+        card.classList.add('active');
         card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
     }
   };
 
-  // Auto-activate current role on load
+  // Auto-activate the latest role (current) on load
   setTimeout(() => activateStop('avyuktaTH'), 1200);
+}
+
+/* ============================================
+   EXPERIENCE — keep map column height in sync
+   with the cards panel on desktop (ResizeObserver)
+   ============================================ */
+function initExpHeightSync() {
+  const mapCol = document.querySelector('.map-col');
+  const cards  = document.querySelector('.exp-cards-wrap');
+  if (!mapCol || !cards || typeof ResizeObserver === 'undefined') return;
+
+  // Side-by-side only at >=1024px (matches the grid breakpoint).
+  // Below that, the map is stacked with a fixed CSS height, so we clear ours.
+  const isSideBySide = () => window.matchMedia('(min-width: 1024px)').matches;
+
+  const syncHeight = () => {
+    if (isSideBySide()) {
+      const h = cards.offsetHeight;
+      if (h) {
+        mapCol.style.height = h + 'px';
+        mapCol.style.minHeight = h + 'px';
+      }
+    } else {
+      // Let CSS own the height when stacked (mobile/tablet)
+      mapCol.style.height = '';
+      mapCol.style.minHeight = '';
+    }
+  };
+
+  const ro = new ResizeObserver(syncHeight);
+  ro.observe(cards);
+
+  // Recalculate on viewport changes (breakpoint crossings, etc.)
+  window.addEventListener('resize', syncHeight, { passive: true });
+  syncHeight();
 }
 
 function capitalize(str) {
