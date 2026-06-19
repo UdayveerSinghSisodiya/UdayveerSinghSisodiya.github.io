@@ -507,7 +507,7 @@
     <!-- Treasure Map -->
     <div class="map-col reveal reveal-d1">
     <div class="map-wrap">
-      <svg class="map-svg" viewBox="0 0 400 720" preserveAspectRatio="xMidYMin meet" xmlns="http://www.w3.org/2000/svg">
+      <svg class="map-svg" id="expMapSvg" viewBox="0 0 400 1080" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <!-- Drop shadow for markers -->
           <filter id="mapShadow" x="-40%" y="-40%" width="180%" height="180%">
@@ -560,151 +560,148 @@
           </radialGradient>
         </defs>
 
-        <!-- Mountains: bottom-right (faint terrain) -->
-        <g opacity="0.2">
-          <polygon points="318,675 346,620 374,675" fill="rgba(90,65,30,0.5)" stroke="rgba(60,38,10,0.2)" stroke-width="0.8"/>
-          <polygon points="345,675 372,606 400,675" fill="rgba(80,58,25,0.4)" stroke="rgba(60,38,10,0.2)" stroke-width="0.8"/>
-          <polygon points="330,675 356,630 382,675" fill="rgba(100,72,35,0.3)" stroke="rgba(60,38,10,0.12)" stroke-width="0.5"/>
-        </g>
-
-        <!-- Pine trees: bottom-left (faint) -->
-        <g opacity="0.18">
-          <polygon points="10,690 23,660 36,690" fill="rgba(60,80,40,0.6)" stroke="rgba(30,50,15,0.2)" stroke-width="0.6"/>
-          <polygon points="12,680 23,655 34,680" fill="rgba(70,90,50,0.5)" stroke="rgba(30,50,15,0.12)" stroke-width="0.4"/>
-          <polygon points="30,690 46,654 62,690" fill="rgba(50,70,30,0.6)" stroke="rgba(30,50,15,0.2)" stroke-width="0.6"/>
-          <polygon points="33,678 46,649 59,678" fill="rgba(60,80,40,0.5)" stroke="rgba(30,50,15,0.12)" stroke-width="0.4"/>
-        </g>
-
-        <!-- Pine trees: left-middle (faint) -->
-        <g opacity="0.16">
-          <polygon points="10,430 23,396 36,430" fill="rgba(60,80,40,0.6)" stroke="rgba(30,50,15,0.2)" stroke-width="0.6"/>
-          <polygon points="12,419 23,391 34,419" fill="rgba(70,90,50,0.5)" stroke="rgba(30,50,15,0.12)" stroke-width="0.4"/>
-          <polygon points="30,430 46,393 62,430" fill="rgba(50,70,30,0.6)" stroke="rgba(30,50,15,0.2)" stroke-width="0.6"/>
-          <polygon points="33,418 46,388 59,418" fill="rgba(60,80,40,0.5)" stroke="rgba(30,50,15,0.12)" stroke-width="0.4"/>
-        </g>
-
         <!-- Mountains: upper-right (faint) -->
         <g opacity="0.16">
-          <polygon points="330,300 354,245 378,300" fill="rgba(90,65,30,0.5)" stroke="rgba(60,38,10,0.2)" stroke-width="0.8"/>
-          <polygon points="355,300 380,236 405,300" fill="rgba(80,58,25,0.4)" stroke="rgba(60,38,10,0.2)" stroke-width="0.8"/>
+          <polygon points="330,150 356,95 382,150" fill="rgba(90,65,30,0.5)" stroke="rgba(60,38,10,0.2)" stroke-width="0.8"/>
+          <polygon points="355,150 380,86 405,150" fill="rgba(80,58,25,0.4)" stroke="rgba(60,38,10,0.2)" stroke-width="0.8"/>
         </g>
 
         <!-- Pine trees: upper-left (faint) -->
         <g opacity="0.16">
-          <polygon points="8,230 21,196 34,230" fill="rgba(60,80,40,0.6)" stroke="rgba(30,50,15,0.2)" stroke-width="0.6"/>
-          <polygon points="10,219 21,191 32,219" fill="rgba(70,90,50,0.5)" stroke="rgba(30,50,15,0.12)" stroke-width="0.4"/>
-          <polygon points="28,230 44,193 60,230" fill="rgba(50,70,30,0.6)" stroke="rgba(30,50,15,0.2)" stroke-width="0.6"/>
-          <polygon points="31,218 44,188 57,218" fill="rgba(60,80,40,0.5)" stroke="rgba(30,50,15,0.12)" stroke-width="0.4"/>
+          <polygon points="14,360 27,326 40,360" fill="rgba(60,80,40,0.6)" stroke="rgba(30,50,15,0.2)" stroke-width="0.6"/>
+          <polygon points="16,349 27,321 38,349" fill="rgba(70,90,50,0.5)" stroke="rgba(30,50,15,0.12)" stroke-width="0.4"/>
+          <polygon points="34,360 50,323 66,360" fill="rgba(50,70,30,0.6)" stroke="rgba(30,50,15,0.2)" stroke-width="0.6"/>
+          <polygon points="37,348 50,318 63,348" fill="rgba(60,80,40,0.5)" stroke="rgba(30,50,15,0.12)" stroke-width="0.4"/>
         </g>
 
-        <!-- Subtle compass (faint) -->
-        <g transform="translate(362,665)" opacity="0.28">
-          <circle r="20" fill="none" stroke="rgba(55,32,8,0.55)" stroke-width="1.2"/>
-          <polygon points="0,-18 -3,0 3,0" fill="rgba(55,32,8,0.65)"/>
-          <polygon points="0,18 -3,0 3,0" fill="rgba(55,32,8,0.25)"/>
-          <line x1="-18" y1="0" x2="18" y2="0" stroke="rgba(55,32,8,0.35)" stroke-width="0.8"/>
+        <!-- Mountains: right-middle (faint) -->
+        <g opacity="0.16">
+          <polygon points="320,560 348,505 376,560" fill="rgba(90,65,30,0.5)" stroke="rgba(60,38,10,0.2)" stroke-width="0.8"/>
+          <polygon points="346,560 372,498 398,560" fill="rgba(80,58,25,0.4)" stroke="rgba(60,38,10,0.2)" stroke-width="0.8"/>
+        </g>
+
+        <!-- Pine trees: left-lower (faint) -->
+        <g opacity="0.16">
+          <polygon points="20,770 33,736 46,770" fill="rgba(60,80,40,0.6)" stroke="rgba(30,50,15,0.2)" stroke-width="0.6"/>
+          <polygon points="22,759 33,731 44,759" fill="rgba(70,90,50,0.5)" stroke="rgba(30,50,15,0.12)" stroke-width="0.4"/>
+          <polygon points="40,770 56,733 72,770" fill="rgba(50,70,30,0.6)" stroke="rgba(30,50,15,0.2)" stroke-width="0.6"/>
+          <polygon points="43,758 56,728 69,758" fill="rgba(60,80,40,0.5)" stroke="rgba(30,50,15,0.12)" stroke-width="0.4"/>
+        </g>
+
+        <!-- Pine trees: right-lower (faint) -->
+        <g opacity="0.15">
+          <polygon points="350,890 363,856 376,890" fill="rgba(60,80,40,0.6)" stroke="rgba(30,50,15,0.2)" stroke-width="0.6"/>
+          <polygon points="352,879 363,851 374,879" fill="rgba(70,90,50,0.5)" stroke="rgba(30,50,15,0.12)" stroke-width="0.4"/>
+        </g>
+
+        <!-- Subtle compass (faint) bottom-right -->
+        <g transform="translate(356,1014)" opacity="0.28">
+          <circle r="22" fill="none" stroke="rgba(55,32,8,0.55)" stroke-width="1.2"/>
+          <polygon points="0,-20 -3,0 3,0" fill="rgba(55,32,8,0.65)"/>
+          <polygon points="0,20 -3,0 3,0" fill="rgba(55,32,8,0.25)"/>
+          <line x1="-20" y1="0" x2="20" y2="0" stroke="rgba(55,32,8,0.35)" stroke-width="0.8"/>
           <circle r="2.5" fill="rgba(55,32,8,0.5)"/>
-          <text x="0" y="-8" text-anchor="middle" font-size="6" fill="rgba(55,32,8,0.65)" font-weight="700" font-family="sans-serif">N</text>
+          <text x="0" y="-9" text-anchor="middle" font-size="6" fill="rgba(55,32,8,0.65)" font-weight="700" font-family="sans-serif">N</text>
+        </g>
+
+        <!-- Anchor (bottom-left, faint) -->
+        <g opacity="0.13" stroke="rgba(55,32,8,0.85)" fill="none" stroke-width="1.3" stroke-linecap="round">
+          <circle cx="42" cy="1018" r="3.4"/>
+          <path d="M42,1021 v24 M31,1031 h22 M30,1043 q12,12 24,0"/>
         </g>
 
         <!-- Faint X marks -->
         <g fill="rgba(55,32,8,0.07)" font-weight="700" font-family="Georgia, serif">
-          <text x="162" y="486" font-size="12">&#x2715;</text>
-          <text x="244" y="366" font-size="10">&#x2715;</text>
-          <text x="112" y="610" font-size="9">&#x2715;</text>
-          <text x="302" y="218" font-size="9">&#x2715;</text>
+          <text x="232" y="560" font-size="13">&#x2715;</text>
+          <text x="60" y="700" font-size="10">&#x2715;</text>
+          <text x="322" y="900" font-size="11">&#x2715;</text>
+          <text x="300" y="300" font-size="9">&#x2715;</text>
         </g>
 
         <!-- Trail: ink shadow -->
-        <path d="M 196 690 C 184 632, 122 600, 86 540 C 42 470, 92 430, 220 444 C 316 454, 348 414, 314 370 C 284 330, 194 330, 96 342 C 20 352, 34 260, 160 250 C 262 242, 334 244, 304 184 C 282 134, 196 132, 124 116 C 70 104, 90 72, 306 72"
+        <path d="M 236 1040 C 212 1008, 150 980, 132 944 C 112 886, 326 832, 300 766 C 278 702, 90 668, 110 588 C 130 514, 314 496, 292 410 C 272 338, 106 322, 138 232 C 156 178, 234 130, 258 96"
               fill="none" stroke="rgba(38,18,4,0.11)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
         <!-- Trail: parchment roadbed -->
-        <path d="M 196 690 C 184 632, 122 600, 86 540 C 42 470, 92 430, 220 444 C 316 454, 348 414, 314 370 C 284 330, 194 330, 96 342 C 20 352, 34 260, 160 250 C 262 242, 334 244, 304 184 C 282 134, 196 132, 124 116 C 70 104, 90 72, 306 72"
+        <path d="M 236 1040 C 212 1008, 150 980, 132 944 C 112 886, 326 832, 300 766 C 278 702, 90 668, 110 588 C 130 514, 314 496, 292 410 C 272 338, 106 322, 138 232 C 156 178, 234 130, 258 96"
               fill="none" stroke="rgba(156,116,66,0.27)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
         <!-- Trail: hand-drawn dashed ink path (roughened) -->
         <path id="expTrailPath"
-              d="M 196 690 C 184 632, 122 600, 86 540 C 42 470, 92 430, 220 444 C 316 454, 348 414, 314 370 C 284 330, 194 330, 96 342 C 20 352, 34 260, 160 250 C 262 242, 334 244, 304 184 C 282 134, 196 132, 124 116 C 70 104, 90 72, 306 72"
+              d="M 236 1040 C 212 1008, 150 980, 132 944 C 112 886, 326 832, 300 766 C 278 702, 90 668, 110 588 C 130 514, 314 496, 292 410 C 272 338, 106 322, 138 232 C 156 178, 234 130, 258 96"
               fill="none" stroke="rgba(55,32,8,0.42)" stroke-width="3.1" stroke-dasharray="8,7"
               stroke-linecap="round" filter="url(#roughen)"/>
         <!-- Trail: golden traveled highlight -->
         <path id="expTrailGlow"
-              d="M 196 690 C 184 632, 122 600, 86 540 C 42 470, 92 430, 220 444 C 316 454, 348 414, 314 370 C 284 330, 194 330, 96 342 C 20 352, 34 260, 160 250 C 262 242, 334 244, 304 184 C 282 134, 196 132, 124 116 C 70 104, 90 72, 306 72"
+              d="M 236 1040 C 212 1008, 150 980, 132 944 C 112 886, 326 832, 300 766 C 278 702, 90 668, 110 588 C 130 514, 314 496, 292 410 C 272 338, 106 322, 138 232 C 156 178, 234 130, 258 96"
               fill="none" stroke="rgba(172,112,14,0.52)" stroke-width="4"
               stroke-linecap="round" stroke-dasharray="0 10000"/>
 
-        <!-- STOP: Vaishnavi Lv.18 -->
+        <!-- STOP: Vaishnavi Lv.18 (earliest — bottom) -->
         <g class="map-stop-btn" id="stopVaishnavi" data-stop="vaishnavi" onclick="activateStop('vaishnavi')">
-          <circle cx="86" cy="540" r="30" fill="transparent"/>
-          <rect x="64" y="512" width="44" height="17" rx="8.5" fill="rgba(22,14,6,0.88)" stroke="rgba(90,60,25,0.3)" stroke-width="1"/>
-          <text x="86" y="523.5" text-anchor="middle" font-size="7" fill="rgba(230,200,155,0.95)" font-weight="700" font-family="sans-serif">Lv. 18</text>
-          <circle cx="86" cy="540" r="23" fill="#3A2A1A" stroke="rgba(20,12,4,0.6)" stroke-width="1.5"/>
-          <text x="86" y="546" text-anchor="middle" font-size="14" fill="rgba(215,190,145,0.92)" font-weight="700" font-family="sans-serif">Vi</text>
-          <rect x="56" y="560" width="60" height="26" rx="6" fill="rgba(22,14,6,0.62)"/>
-          <text x="86" y="571" text-anchor="middle" font-size="10" fill="rgba(238,222,190,0.95)" font-weight="600" font-family="sans-serif">Vaishnavi</text>
-          <text x="86" y="582" text-anchor="middle" font-size="9" fill="rgba(238,222,190,0.7)" font-style="italic" font-family="sans-serif">2021&#x2013;22</text>
+          <circle cx="132" cy="944" r="30" fill="transparent"/>
+          <rect x="110" y="904" width="44" height="18" rx="9" fill="rgba(22,14,6,0.88)" stroke="rgba(90,60,25,0.3)" stroke-width="1"/>
+          <text x="132" y="916.5" text-anchor="middle" font-size="8.5" fill="rgba(230,200,155,0.95)" font-weight="700" font-family="sans-serif">Lv. 18</text>
+          <circle cx="132" cy="944" r="22" fill="#3A2A1A" stroke="rgba(20,12,4,0.6)" stroke-width="1.5"/>
+          <text x="132" y="949.5" text-anchor="middle" font-size="14" fill="rgba(215,190,145,0.92)" font-weight="700" font-family="sans-serif">Vi</text>
+          <text x="132" y="982" text-anchor="middle" font-size="12" fill="rgba(48,30,12,0.78)" font-weight="600" font-family="sans-serif">Vaishnavi</text>
+          <text x="132" y="996" text-anchor="middle" font-size="10" fill="rgba(48,30,12,0.55)" font-style="italic" font-family="sans-serif">2021&#x2013;22</text>
         </g>
 
         <!-- STOP: Avyukta Intern Lv.19 -->
         <g class="map-stop-btn" id="stopAvyukta19" data-stop="avyukta19" onclick="activateStop('avyukta19')">
-          <circle cx="314" cy="370" r="30" fill="transparent"/>
-          <rect x="292" y="342" width="44" height="17" rx="8.5" fill="rgba(22,14,6,0.88)" stroke="rgba(90,60,25,0.3)" stroke-width="1"/>
-          <text x="314" y="353.5" text-anchor="middle" font-size="7" fill="rgba(230,200,155,0.95)" font-weight="700" font-family="sans-serif">Lv. 19</text>
-          <circle cx="314" cy="370" r="23" fill="#3A2A1A" stroke="rgba(20,12,4,0.6)" stroke-width="1.5"/>
-          <text x="314" y="376" text-anchor="middle" font-size="14" fill="rgba(215,190,145,0.92)" font-weight="700" font-family="sans-serif">Av</text>
-          <rect x="284" y="390" width="60" height="26" rx="6" fill="rgba(22,14,6,0.62)"/>
-          <text x="314" y="401" text-anchor="middle" font-size="10" fill="rgba(238,222,190,0.95)" font-weight="600" font-family="sans-serif">Avyukta</text>
-          <text x="314" y="412" text-anchor="middle" font-size="9" fill="rgba(238,222,190,0.7)" font-style="italic" font-family="sans-serif">2022&#x2013;23</text>
+          <circle cx="300" cy="766" r="30" fill="transparent"/>
+          <rect x="278" y="726" width="44" height="18" rx="9" fill="rgba(22,14,6,0.88)" stroke="rgba(90,60,25,0.3)" stroke-width="1"/>
+          <text x="300" y="738.5" text-anchor="middle" font-size="8.5" fill="rgba(230,200,155,0.95)" font-weight="700" font-family="sans-serif">Lv. 19</text>
+          <circle cx="300" cy="766" r="22" fill="#3A2A1A" stroke="rgba(20,12,4,0.6)" stroke-width="1.5"/>
+          <text x="300" y="771.5" text-anchor="middle" font-size="14" fill="rgba(215,190,145,0.92)" font-weight="700" font-family="sans-serif">Av</text>
+          <text x="300" y="804" text-anchor="middle" font-size="12" fill="rgba(48,30,12,0.78)" font-weight="600" font-family="sans-serif">Avyukta</text>
+          <text x="300" y="818" text-anchor="middle" font-size="10" fill="rgba(48,30,12,0.55)" font-style="italic" font-family="sans-serif">2022&#x2013;23</text>
         </g>
 
         <!-- STOP: Avyukta Server Eng Lv.20 -->
         <g class="map-stop-btn" id="stopAvyukta20" data-stop="avyukta20" onclick="activateStop('avyukta20')">
-          <circle cx="96" cy="342" r="30" fill="transparent"/>
-          <rect x="74" y="314" width="44" height="17" rx="8.5" fill="rgba(22,14,6,0.88)" stroke="rgba(90,60,25,0.3)" stroke-width="1"/>
-          <text x="96" y="325.5" text-anchor="middle" font-size="7" fill="rgba(230,200,155,0.95)" font-weight="700" font-family="sans-serif">Lv. 20</text>
-          <circle cx="96" cy="342" r="23" fill="#3A2A1A" stroke="rgba(20,12,4,0.6)" stroke-width="1.5"/>
-          <text x="96" y="348" text-anchor="middle" font-size="14" fill="rgba(215,190,145,0.92)" font-weight="700" font-family="sans-serif">Av</text>
-          <rect x="66" y="362" width="60" height="26" rx="6" fill="rgba(22,14,6,0.62)"/>
-          <text x="96" y="373" text-anchor="middle" font-size="10" fill="rgba(238,222,190,0.95)" font-weight="600" font-family="sans-serif">Avyukta</text>
-          <text x="96" y="384" text-anchor="middle" font-size="9" fill="rgba(238,222,190,0.7)" font-style="italic" font-family="sans-serif">2023</text>
+          <circle cx="110" cy="588" r="30" fill="transparent"/>
+          <rect x="88" y="548" width="44" height="18" rx="9" fill="rgba(22,14,6,0.88)" stroke="rgba(90,60,25,0.3)" stroke-width="1"/>
+          <text x="110" y="560.5" text-anchor="middle" font-size="8.5" fill="rgba(230,200,155,0.95)" font-weight="700" font-family="sans-serif">Lv. 20</text>
+          <circle cx="110" cy="588" r="22" fill="#3A2A1A" stroke="rgba(20,12,4,0.6)" stroke-width="1.5"/>
+          <text x="110" y="593.5" text-anchor="middle" font-size="14" fill="rgba(215,190,145,0.92)" font-weight="700" font-family="sans-serif">Av</text>
+          <text x="110" y="626" text-anchor="middle" font-size="12" fill="rgba(48,30,12,0.78)" font-weight="600" font-family="sans-serif">Avyukta</text>
+          <text x="110" y="640" text-anchor="middle" font-size="10" fill="rgba(48,30,12,0.55)" font-style="italic" font-family="sans-serif">2023</text>
         </g>
 
         <!-- STOP: Avyukta NOC Lv.21 -->
         <g class="map-stop-btn" id="stopAvyukta21" data-stop="avyukta21" onclick="activateStop('avyukta21')">
-          <circle cx="304" cy="184" r="30" fill="transparent"/>
-          <rect x="282" y="156" width="44" height="17" rx="8.5" fill="rgba(22,14,6,0.88)" stroke="rgba(90,60,25,0.3)" stroke-width="1"/>
-          <text x="304" y="167.5" text-anchor="middle" font-size="7" fill="rgba(230,200,155,0.95)" font-weight="700" font-family="sans-serif">Lv. 21</text>
-          <circle cx="304" cy="184" r="23" fill="#3A2A1A" stroke="rgba(20,12,4,0.6)" stroke-width="1.5"/>
-          <text x="304" y="190" text-anchor="middle" font-size="14" fill="rgba(215,190,145,0.92)" font-weight="700" font-family="sans-serif">Av</text>
-          <rect x="274" y="204" width="60" height="26" rx="6" fill="rgba(22,14,6,0.62)"/>
-          <text x="304" y="215" text-anchor="middle" font-size="10" fill="rgba(238,222,190,0.95)" font-weight="600" font-family="sans-serif">Avyukta</text>
-          <text x="304" y="226" text-anchor="middle" font-size="9" fill="rgba(238,222,190,0.7)" font-style="italic" font-family="sans-serif">2023&#x2013;24</text>
+          <circle cx="292" cy="410" r="30" fill="transparent"/>
+          <rect x="270" y="370" width="44" height="18" rx="9" fill="rgba(22,14,6,0.88)" stroke="rgba(90,60,25,0.3)" stroke-width="1"/>
+          <text x="292" y="382.5" text-anchor="middle" font-size="8.5" fill="rgba(230,200,155,0.95)" font-weight="700" font-family="sans-serif">Lv. 21</text>
+          <circle cx="292" cy="410" r="22" fill="#3A2A1A" stroke="rgba(20,12,4,0.6)" stroke-width="1.5"/>
+          <text x="292" y="415.5" text-anchor="middle" font-size="14" fill="rgba(215,190,145,0.92)" font-weight="700" font-family="sans-serif">Av</text>
+          <text x="292" y="448" text-anchor="middle" font-size="12" fill="rgba(48,30,12,0.78)" font-weight="600" font-family="sans-serif">Avyukta</text>
+          <text x="292" y="462" text-anchor="middle" font-size="10" fill="rgba(48,30,12,0.55)" font-style="italic" font-family="sans-serif">2023&#x2013;24</text>
         </g>
 
-        <!-- STOP: Avyukta TH Lv.22 YOU ARE HERE -->
+        <!-- STOP: Avyukta TH Lv.22 YOU ARE HERE (current — near top) -->
         <g class="map-stop-btn" id="stopAvyuktaTH" data-stop="avyuktaTH" onclick="activateStop('avyuktaTH')">
-          <circle cx="124" cy="116" r="34" fill="transparent"/>
-          <circle cx="124" cy="116" r="27" fill="rgba(26,144,128,0.06)" stroke="#1A9080" stroke-width="2" class="treasure-glow-ring"/>
-          <rect x="100" y="86" width="48" height="17" rx="8.5" fill="rgba(6,52,42,0.92)" stroke="rgba(18,150,125,0.45)" stroke-width="1"/>
-          <text x="124" y="97.5" text-anchor="middle" font-size="7" fill="rgba(175,248,230,0.96)" font-weight="700" font-family="sans-serif">Lv. 22</text>
-          <circle cx="124" cy="116" r="23" fill="#0F3530" stroke="rgba(26,144,128,0.55)" stroke-width="1.5"/>
-          <text x="124" y="122" text-anchor="middle" font-size="14" fill="rgba(150,240,220,0.95)" font-weight="700" font-family="sans-serif">Av</text>
-          <rect x="92" y="135" width="64" height="26" rx="6" fill="rgba(6,52,42,0.72)"/>
-          <text x="124" y="146" text-anchor="middle" font-size="10" fill="rgba(150,240,220,0.97)" font-weight="700" font-family="sans-serif">Avyukta</text>
-          <text x="124" y="157" text-anchor="middle" font-size="9" fill="rgba(150,240,220,0.78)" font-style="italic" font-family="sans-serif">2024&#x2013;now</text>
-          <text x="124" y="170" text-anchor="middle" font-size="9.5" fill="#13B89C" font-weight="700" font-family="sans-serif">&#x25BC; You are here</text>
+          <circle cx="138" cy="232" r="34" fill="transparent"/>
+          <circle cx="138" cy="232" r="27" fill="rgba(26,144,128,0.06)" stroke="#1A9080" stroke-width="2" class="treasure-glow-ring"/>
+          <rect x="113" y="190" width="50" height="18" rx="9" fill="rgba(6,52,42,0.92)" stroke="rgba(18,150,125,0.45)" stroke-width="1"/>
+          <text x="138" y="202.5" text-anchor="middle" font-size="8.5" fill="rgba(175,248,230,0.96)" font-weight="700" font-family="sans-serif">Lv. 22</text>
+          <circle cx="138" cy="232" r="22" fill="#0F3530" stroke="rgba(26,144,128,0.55)" stroke-width="1.5"/>
+          <text x="138" y="237.5" text-anchor="middle" font-size="14" fill="rgba(150,240,220,0.95)" font-weight="700" font-family="sans-serif">Av</text>
+          <text x="138" y="270" text-anchor="middle" font-size="12" fill="#0A6050" font-weight="700" font-family="sans-serif">Avyukta</text>
+          <text x="138" y="284" text-anchor="middle" font-size="10" fill="rgba(10,80,65,0.72)" font-style="italic" font-family="sans-serif">2024&#x2013;now</text>
+          <text x="138" y="299" text-anchor="middle" font-size="10.5" fill="#188070" font-style="italic" font-family="sans-serif">You are here</text>
         </g>
 
-        <!-- STOP: Mystery -->
+        <!-- STOP: Mystery (What's next) — very top -->
         <g class="map-stop-btn" id="stopMystery" data-stop="mystery" onclick="activateStop('mystery')">
-          <circle cx="306" cy="72" r="28" fill="transparent"/>
-          <circle cx="306" cy="72" r="21" fill="rgba(196,138,24,0.08)" stroke="rgba(200,140,20,0.45)" stroke-width="1.4" stroke-dasharray="4,3" class="mystery-pulse-ring"/>
-          <circle cx="306" cy="72" r="14" fill="rgba(28,18,4,0.92)" stroke="rgba(200,140,20,0.62)" stroke-width="1.5"/>
-          <text x="306" y="79" text-anchor="middle" font-size="17" fill="#E0A82E" font-weight="700" font-family="Georgia, serif">&#x2726;</text>
-          <text x="306" y="99" text-anchor="middle" font-size="7.5" fill="rgba(200,140,20,0.78)" font-style="italic" font-family="Georgia, serif">What's next?</text>
+          <circle cx="258" cy="78" r="26" fill="transparent"/>
+          <line x1="247" y1="67" x2="269" y2="89" stroke="#B23022" stroke-width="3.4" stroke-linecap="round"/>
+          <line x1="269" y1="67" x2="247" y2="89" stroke="#B23022" stroke-width="3.4" stroke-linecap="round"/>
+          <text x="258" y="112" text-anchor="middle" font-size="11" fill="rgba(150,42,28,0.7)" font-style="italic" font-family="Georgia, serif">What's next?</text>
         </g>
 
         <!-- Packet: amber orb (scroll-driven) -->
-        <g id="tcpPacket" transform="translate(196, 690)">
+        <g id="tcpPacket" transform="translate(236, 1040)">
           <circle r="16" fill="rgba(165,105,12,0.1)" class="packet-pulse"/>
           <circle r="8" fill="#7A4A08" stroke="#C88A18" stroke-width="2.2" filter="url(#packetGlow)" opacity="0.96"/>
           <circle r="3" fill="#FFD878"/>

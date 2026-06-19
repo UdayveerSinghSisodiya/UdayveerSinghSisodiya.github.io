@@ -80,16 +80,6 @@ button { cursor: pointer; font-family: inherit; }
   0%   { transform: scale(1);   opacity: 0.32; }
   100% { transform: scale(2.6); opacity: 0; }
 }
-/* Soft pulse for the gold "What's next?" mystery marker ring */
-@keyframes mystery-pulse {
-  0%,100% { transform: scale(1);    opacity: 0.85; }
-  50%      { transform: scale(1.18); opacity: 0.35; }
-}
-.mystery-pulse-ring {
-  animation: mystery-pulse 2.4s ease-in-out infinite;
-  transform-box: fill-box;
-  transform-origin: center;
-}
 .packet-pulse {
   animation: packetPulse 1.8s ease-out infinite;
   transform-box: fill-box;
@@ -633,14 +623,15 @@ button { cursor: pointer; font-family: inherit; }
   .exp-grid { grid-template-columns: 2fr 3fr; }
 }
 
-/* Mobile / stacked layout: map sits on top at a fixed height,
-   cards stack full-width below. Never let JS stretch the map here. */
-@media (max-width: 767.98px) {
+/* Stacked layout (below the 1024px 2-column breakpoint): map sits on top
+   at a fixed height, cards stack full-width below. JS switches the SVG to
+   "slice" here so the tall map fills the width and shows the recent roles
+   instead of shrinking to a thin centered strip. */
+@media (max-width: 1023.98px) {
   .map-col {
-    height: 400px !important;
+    height: 440px !important;
     min-height: 0 !important;
   }
-  .map-wrap { justify-content: flex-start; }
   .exp-cards-wrap { width: 100%; }
 }
 
@@ -653,18 +644,20 @@ button { cursor: pointer; font-family: inherit; }
   flex-direction: column;
 }
 
-/* Map container — centers the fixed-ratio map within the synced height */
+/* Map container — lets the tall SVG fill the full synced column height */
 .map-wrap {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  min-height: 0;
 }
+/* Tall map (viewBox 400x1080) fills the column; preserveAspectRatio="meet"
+   in the markup keeps it undistorted, letterboxing onto the parchment
+   section background (so any slack reads as the same beige, not a gap). */
 .map-svg {
   width: 100%;
-  height: auto;
-  aspect-ratio: 400 / 720;
-  flex: 0 0 auto;
+  height: 100%;
+  flex: 1;
   display: block;
 }
 

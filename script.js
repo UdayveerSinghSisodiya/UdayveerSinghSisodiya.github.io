@@ -138,32 +138,37 @@ function initExperienceMap() {
 function initExpHeightSync() {
   const mapCol = document.querySelector('.map-col');
   const cards  = document.querySelector('.exp-cards-wrap');
+  const svg    = document.getElementById('expMapSvg');
   if (!mapCol || !cards || typeof ResizeObserver === 'undefined') return;
 
   // Side-by-side only at >=1024px (matches the grid breakpoint).
-  // Below that, the map is stacked with a fixed CSS height, so we clear ours.
   const isSideBySide = () => window.matchMedia('(min-width: 1024px)').matches;
 
-  const syncHeight = () => {
+  const sync = () => {
     if (isSideBySide()) {
+      // Match the tall map column to the cards panel so both are equal height.
       const h = cards.offsetHeight;
       if (h) {
         mapCol.style.height = h + 'px';
         mapCol.style.minHeight = h + 'px';
       }
+      // "meet" = whole map visible, centered, undistorted (slack = parchment).
+      if (svg) svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     } else {
-      // Let CSS own the height when stacked (mobile/tablet)
+      // Stacked: CSS owns the fixed height; fill the width and anchor to the
+      // top so the most recent roles show in the shorter band.
       mapCol.style.height = '';
       mapCol.style.minHeight = '';
+      if (svg) svg.setAttribute('preserveAspectRatio', 'xMidYMin slice');
     }
   };
 
-  const ro = new ResizeObserver(syncHeight);
+  const ro = new ResizeObserver(sync);
   ro.observe(cards);
 
   // Recalculate on viewport changes (breakpoint crossings, etc.)
-  window.addEventListener('resize', syncHeight, { passive: true });
-  syncHeight();
+  window.addEventListener('resize', sync, { passive: true });
+  sync();
 }
 
 function capitalize(str) {
